@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--viewportはスマホ向けに文書の表示方法を指定, device-widthで画面幅をそのデバイスの画面幅に合わせる、initial以下で最初の拡大縮小倍率をいじれる--> 
+    <title>ToDoリスト</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><!--linkタグは外部ファイルを読ませる,url_for()はファイルの正しいURLを自動生成してくれる,-->
+</head>
+<body>
+    <h1>ToDoリスト</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.content }} 
+                {% if task.deadline %}
+                    (締切:{{task.deadline.strftime('%Y-%m-%d') }})
+                {% endif %}
+                <a href="{{ url_for('delete', task_id=task.id) }}">削除</a></li><!--loop.index0は現在のループの回数,url_for()はdelete関数に飛ぶ-->
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add') }}">タスクを追加</a> <!--<a>はアンカータグ,hrefは移動先のURL, url_for()で、引数の関数へのURLを作る-->>
+</body>
+</html>

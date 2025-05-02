@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク追加</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>タスク追加</h1>  <!-- -->
+    <form method="post"> <!--データをサーバに送信,POSTメソッドで-->
+        <input type="text" name="task" required placeholder="タスク内容"><!--入力必須でテキストボックス-->
+        <input type="date" name="deadline">
+        <button type="submit">追加</button><!--submitで送信-->
+    </form>
+    <a href="{{ url_for('index') }}">戻る</a>
+</body>
+</html>
