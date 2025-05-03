@@ -2,10 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import asc, nulls_last
 from datetime import datetime
-import webbrowser
-import threading
-
-#second
 
 app = Flask(__name__)
 
@@ -51,9 +47,6 @@ def delete(task_id):
         db.session.commit()
     return redirect(url_for('index'))
 
-def open_browser():
-    webbrowser.open("http://127.0.0.1:5000")
-
 if __name__ == '__main__':
-    threading.Timer(1.0, open_browser).start()
-    app.run(debug=True, use_reloader=False)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)

@@ -1,0 +1,46 @@
+# Pythonキャッシュファイル
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 仮想環境フォルダ（Windows系）
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+
+# 仮想環境フォルダ（他OS含む汎用）
+venv/
+env/
+.venv/
+.env/
+
+# pipパッケージのログ
+pip-log.txt
+pip-delete-this-directory.txt
+
+# エディタ設定ファイル
+.vscode/
+.idea/
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# データベースファイル（SQLite）
+*.sqlite3
+*.db
+
+# Flask用設定ファイル
+instance/
+*.flaskenv
+
+# コンパイルされた拡張モジュール
+*.so
+
+# 環境変数ファイル（セキュア情報）
+.env
+.env.*
+
+# ログファイル
+*.log
