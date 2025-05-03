@@ -2,10 +2,19 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import asc, nulls_last
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'  #データベースの場所を設定（SQLiteファイル tasks.db を使用）
+db_url = os.environ.get("DATABASE_URL")
+if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+if not db_url:
+    raise RuntimeError("❌ DATABASE_URL is not set. Aborting to avoid using SQLite.")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  #変更追跡機能をオフにして無駄なメモリ使用を防ぐ（推奨設定）
 db = SQLAlchemy(app)  #SQLAlchemyにFlaskアプリを紐付ける
 
